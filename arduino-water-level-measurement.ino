@@ -76,21 +76,27 @@ void loop() {
   cmd += "\"";
 
   WiFiClient client = server.available();
-  client.println("HTTP/1.1 200 OK");
-  client.println();
+
   client.println("<!DOCTYPE html>");
-  client.println("<html xmlns='http://www.w3.org/1999/xhtml'>");
   client.println("<head>\n<meta charset='UTF-8'>");
-  client.println("<title>Water Level</title>");
+    // Compatibility for mobile devices
+
+    client.println("<meta name='viewport' content='width=device-width, initial-scale=1' />");
+    client.println("<title>Water Level</title>");
+    client.println("<style>");
+      client.println(" .container { display: flex; align-items: center; justify-content: center } img { max-width: 100% } .image { flex-basis: 40% } .text { font-size: 20px; padding-left: 20px; } ");
+    client.println("</style>");
   client.println("</head>\n<body>");
   client.println("<H2>Water Level</H2>");
-  client.println("<div>");
-
-  client.println("<svg style='width:20%;height:20%' viewBox='0 0 24 24'> <path fill='currentColor' d='M16 20H8V6H16M16.67 4H15V2H9V4H7.33C6.6 4 6 4.6 6 5.33V20.67C6 21.4 6.6 22 7.33 22H16.67C17.41 22 18 21.41 18 20.67V5.33C18 4.6 17.4 4 16.67 4M15 16H9V19H15V16M15 7H9V10H15V7M15 11.5H9V14.5H15V11.5Z' /> </svg>");
-  client.println("<div style='font-size:300%'>");
-  client.println(duration);
-  client.println("</div>");
-
+  client.println("<div class='container'>");
+    client.println("<div class='image'>");
+      client.println("<svg style='width:20%;height:20%' viewBox='0 0 24 24'> <path fill='currentColor' d='M16 20H8V6H16M16.67 4H15V2H9V4H7.33C6.6 4 6 4.6 6 5.33V20.67C6 21.4 6.6 22 7.33 22H16.67C17.41 22 18 21.41 18 20.67V5.33C18 4.6 17.4 4 16.67 4M15 16H9V19H15V16M15 7H9V10H15V7M15 11.5H9V14.5H15V11.5Z' /> </svg>");
+    client.println("</div>");
+    client.println("<div class='text'>");
+      client.println("<h1>");
+        client.print(duration);
+      client.println("</h1>");
+    client.println("</div>");
   client.println("</div>");
   client.print("</body>\n</html>");
   delay(500);
