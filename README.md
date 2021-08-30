@@ -19,6 +19,6 @@ Also add the `ArduinoJson` Library to the project.
 
  -  Navigate to the `Sketch` folder an create a now folder called `data`. In this folder, all website-related stuff like images, `.css` or `.html` files are stored.
  - The flash size of the corresponding _ESP8266 Board_ should be set to `4M (FS:1MB)` or `4M (1M SPIFFS)`.
-- `.html`, `.css` files and icons are uploaded using the (Arduino ESP8266 filesystem uploader)[https://github.com/esp8266/arduino-esp8266fs-plugin].
+- `.html`, `.css` files and icons are uploaded using the [Arduino ESP8266 filesystem uploader](https://github.com/esp8266/arduino-esp8266fs-plugin).
 - Download a release and put the resulting folder in the `tools` folder of your _Sketchbook_ folder.
 
