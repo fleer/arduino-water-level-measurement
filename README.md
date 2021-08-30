@@ -2,15 +2,15 @@
 
 The whole project was inspired by the work described in the follwoing posts:
 
-- (https://arduino-projekte.info/zisterne-fuellstandsanzeige)[https://arduino-projekte.info/zisterne-fuellstandsanzeige]
-- (https://arduino-projekte.info/zisterne-3-0-web-server-spiffs)[https://arduino-projekte.info/zisterne-3-0-web-server-spiffs]
+- [https://arduino-projekte.info/zisterne-fuellstandsanzeige](https://arduino-projekte.info/zisterne-fuellstandsanzeige)
+- [https://arduino-projekte.info/zisterne-3-0-web-server-spiffs](https://arduino-projekte.info/zisterne-3-0-web-server-spiffs)
 
 ## Requirements
 
 The following libraries are required:
 
-- (ESPAsyncWebServer)[https://github.com/me-no-dev/ESPAsyncWebServer]
-- (ESPAsyncTCP)[https://github.com/me-no-dev/ESPAsyncTCP]
+- [ESPAsyncWebServer](https://github.com/me-no-dev/ESPAsyncWebServer)
+- [ESPAsyncTCP](https://github.com/me-no-dev/ESPAsyncTCP)
 
 Just clone them into the `Arduino/libraries` folder.  
 Also add the `ArduinoJson` Library to the project.
