@@ -153,7 +153,7 @@ void setup() {
   //-----------
   // Debugging
   // initialize digital pin LED_BUILTIN as an output.
-  pinMode(LED_BUILTIN, OUTPUT);
+  // pinMode(LED_BUILTIN, OUTPUT);
   //-----------
   pinMode(trigger, OUTPUT);
   pinMode(echo, INPUT);
@@ -219,21 +219,6 @@ void setup() {
 }
 
 void loop() {
-/*
-  digitalWrite(trigger, LOW);
-  delayMicroseconds(2);
-  digitalWrite(trigger, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigger, LOW);
-  duration = pulseIn(echo, HIGH);
-  distance = (duration / 2.) / 100.;
-
-  Serial.println("=========== Loop ============");
-  Serial.println(duration);
-  Serial.println("=============================");
-
-  delay(500);
-*/
   // Debugger
   /*
   digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
