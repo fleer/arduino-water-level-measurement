@@ -1,11 +1,25 @@
-# arduino-water-level-measurement
+# Water Level Measurement using an Arduino and an Ultrasonic Sensor
 
-The whole project was inspired by the work described in the follwoing posts:
+The whole project was inspired by the work described in the following posts:
 
 - [https://arduino-projekte.info/zisterne-fuellstandsanzeige](https://arduino-projekte.info/zisterne-fuellstandsanzeige)
 - [https://arduino-projekte.info/zisterne-3-0-web-server-spiffs](https://arduino-projekte.info/zisterne-3-0-web-server-spiffs)
 
-## Requirements
+## Hardware
+
+- Ultrasonic Sensor: **HP-SR04**
+- Board: **Wemos D1 mini**
+
+### Board Manager
+
+In this project, the **Wemos D1 mini** is utilized. To install this board
+type in *Arduino IDE*, 
+
+1. Add the following URL to *File -> Preferences -> Additional Boards Manager URLs*: [http://arduino.esp8266.com/stable/package_esp8266com_index.json](http://arduino.esp8266.com/stable/package_esp8266com_index.json).
+2. Install the **esp8266** board via the _Boards Manager_.
+3. Select "Wemos D1 mini" from the _ESP8266 Boards_ as the currently used board.
+
+### Libraries
 
 The following libraries are required:
 
