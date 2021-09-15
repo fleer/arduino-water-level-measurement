@@ -5,10 +5,12 @@ The whole project was inspired by the work described in the following posts:
 - [https://arduino-projekte.info/zisterne-fuellstandsanzeige](https://arduino-projekte.info/zisterne-fuellstandsanzeige)
 - [https://arduino-projekte.info/zisterne-3-0-web-server-spiffs](https://arduino-projekte.info/zisterne-3-0-web-server-spiffs)
 
-## Hardware
+## Hardware & Wiring
 
 - Ultrasonic Sensor: **HP-SR04**
 - Board: **Wemos D1 mini**
+
+![Visualization of the wiring used in this project](./Water-Level-Measurement.png)
 
 ### Board Manager
 
