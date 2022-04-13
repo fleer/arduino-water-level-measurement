@@ -23,14 +23,11 @@
 
 //#define echo D7 // Echo Pin
 //#define trigger D6 // Trigger Pin
-const char* ssid = "MyWlan";
-const char* password = "000000000000";
+const char* ssid = "WLAN";
+const char* password = "000000000";
 
 int trigger = 12;
 int echo = 13;
-
-long duration = 0;
-long distance = 0;
 long liter = 0;
 
 char* picture = "";
@@ -38,13 +35,38 @@ char* picture = "";
 AsyncWebServer server(80);
 
 /*
- * Some functions:
- * getLiter() -> Get liter in tank
- * getPicture() -> Get corresponding picture
- */
+   Some functions:
+   getLiter() -> Get liter in tank
+   getPicture() -> Get corresponding picture
+*/
 
 //Compute volume displayed on website
 String getLiter() {
+  // Declare variables
+  float distance = 0.0;
+  float duration = 0.0;
+  //float durationM = 0.0;
+  //int measurements = 0;
+  float cistern_height = 250.5;
+
+  // Measure multiple Times in order to
+  // achieve a more exact result
+ /*
+  while (measurements < 5){
+    digitalWrite(trigger, LOW);
+    delayMicroseconds(2);
+    digitalWrite(trigger, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigger, LOW);
+    durationM = pulseIn(echo, HIGH);
+    // Only take measurement if duration > 0
+    if (durationM > 0) {
+      measurements++;
+      duration += durationM;
+    }
+    delayMicroseconds(1000);
+  }
+  */
 
   digitalWrite(trigger, LOW);
   delayMicroseconds(2);
@@ -53,17 +75,38 @@ String getLiter() {
   digitalWrite(trigger, LOW);
   duration = pulseIn(echo, HIGH);
 
-  distance = (duration / 2.) / 29.1;
+  Serial.println(duration);
 
+  //distance = (duration / (2. + float(measurements))) / 29.1;
+
+  if (duration > 0.) {
+    distance = (duration / 2.0) / 29.1;
+  }
+  /*
+  else {
+    distance = 47.0;
+  }
+  */
+
+
+  //Serial.println(distance);
+  //********************************************
   // Check if measurement is in eligible region
-  if (distance >= 178 || distance <= 0)
+  //********************************************
+
+  // Check that distance is not greater then cistern
+  // height or distance is negative
+  liter = (cistern_height - distance) * 24.57;
+
+  Serial.println(liter);
+
+  if (liter < 0.)
   {
-    distance = 0;
+    liter = 0.;
+  } else if (liter > 5000) {
+    liter = 5000.;
   }
 
-  liter = 178.5 - distance;
-  liter = liter * 24.57;
-  Serial.println(String(liter));
   return String(liter);
 }
 
@@ -74,7 +117,7 @@ String getImage() {
     // 0%
     picture = " <path fill='currentColor' d='M16,20H8V6H16M16.67,4H15V2H9V4H7.33A1.33,1.33 0 0,0 6,5.33V20.67C6,21.4 6.6,22 7.33,22H16.67A1.33,1.33 0 0,0 18,20.67V5.33C18,4.6 17.4,4 16.67,4Z' />";
   }
-  else if (liter >=500  && liter < 1000)
+  else if (liter >= 500  && liter < 1000)
   {
     // 10%
     picture = " <path fill='currentColor' d='M16,18H8V6H16M16.67,4H15V2H9V4H7.33A1.33,1.33 0 0,0 6,5.33V20.67C6,21.4 6.6,22 7.33,22H16.67A1.33,1.33 0 0,0 18,20.67V5.33C18,4.6 17.4,4 16.67,4Z' />";
@@ -130,7 +173,7 @@ String getImage() {
 
 // Placeholder in HTML Code
 String colldata(const String& var) {
-  Serial.println(var);
+  //Serial.println(var);
   if (var == "LITER") {
     return getLiter();
   }
@@ -159,9 +202,9 @@ void setup() {
   pinMode(echo, INPUT);
 
   // Define fixed IP
-  IPAddress ip(192,168,2,123);
-  IPAddress gateway(192,168,2,1);
-  IPAddress subnet(255,255,255,0);
+  IPAddress ip(192, 168, 178, 111);
+  IPAddress gateway(192, 168, 178, 1);
+  IPAddress subnet(255, 255, 255, 0);
 
   // Connect to WiFi network
   WiFi.config(ip, gateway, subnet);
@@ -186,6 +229,8 @@ void setup() {
 
   // Print the IP address
   Serial.println("=============================");
+  Serial.print("ESP Board MAC Address:  ");
+  Serial.println(WiFi.macAddress());
   Serial.println("Local IP:");
   Serial.println(WiFi.localIP());
   Serial.println("Local Gateway:");
@@ -221,9 +266,9 @@ void setup() {
 void loop() {
   // Debugger
   /*
-  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(1000);                       // wait for a second
-  digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
-  delay(1000);                       // wait for a second
+    digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+    delay(1000);                       // wait for a second
+    digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+    delay(1000);                       // wait for a second
   */
 }
