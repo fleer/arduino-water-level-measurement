@@ -54,3 +54,5 @@ dkms.conf
 0/
 build/
 tags
+
+wlan.txt

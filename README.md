@@ -17,13 +17,13 @@ In this project, the **Wemos D1 mini** is utilized. To install this board type i
 
 At first, the **HP-SR04** can be put into operation. One major problem however, is that the sensor has a high probability to break due to humidity.
 
-![Visualization of the wiring for the **HP-SR04**](./Water-Level-Measurement.png)
+![Visualization of the wiring for the **HP-SR04**](./images/Water-Level-Measurement.png)
 
 ### AJ-SR04M
 
 A better option might be the **AJ-SR04M**. Here, the actual sensor is attached to a long wire and thus separated from the actual board. Thus, there is a better protection against humidity induced malfunction as it is possible to place the board outside the cistern.
 
-![Visualization of the wiring for the **AJ-SR04M**](./aj_sr04m_bb.png)
+![Visualization of the wiring for the **AJ-SR04M**](./images/aj_sr04m_bb.png)
 
 ### Libraries
 
